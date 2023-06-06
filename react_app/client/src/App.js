@@ -1,14 +1,16 @@
 import './App.css';
-import  LoginButton from "./components/login";
-import  LogoutButton from "./components/logout";
-import HomePage from './components/HomePage';
-import { useEffect } from 'react';
-import { gapi}  from  'gapi-script';
+import LoginButton from "./components/login";
+import LogoutButton from "./components/logout";
+import { useEffect, useState } from 'react';
+import { gapi } from 'gapi-script';
+import React from 'react';
 import Navbar from './components/Navbar';
+import HomePage from './components/HomePage';
 
 const clientId = '89846874244-4rl59hshpt44k64ontkslptsit9jmilq.apps.googleusercontent.com';
 
-function App() {
+const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     function start() {
@@ -21,17 +23,20 @@ function App() {
     gapi.load('client:auth2', start);
   });
 
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
 
-  // var accessToken = gapi.auth.getToken().accessToken; ### Para ter o acces token para a api
-  
-
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+  };
 
   return (
-    <div className="App">
+    <div className='App'>
       <Navbar />
-      <HomePage />
-      <LoginButton />
-      <LogoutButton />
+      {isAuthenticated ? <HomePage /> : null}
+      {!isAuthenticated && <LoginButton onSuccess={handleLogin} />}
+      {isAuthenticated && <LogoutButton onLogoutSuccess={handleLogout} />}
     </div>
   );
 }
