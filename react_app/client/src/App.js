@@ -1,15 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
-import  LoginButton from "./components/login";
-import  LogoutButton from "./components/logout";
+import LoginButton from "./components/login";
+import LogoutButton from "./components/logout";
 import { useEffect } from 'react';
-import { gapi}  from  'gapi-script';
+import { gapi } from 'gapi-script';
+import React from 'react';
+import Navbar from './components/Navbar';
+
 
 const clientId = '89846874244-4rl59hshpt44k64ontkslptsit9jmilq.apps.googleusercontent.com';
 
-function App() {
+const App = () => {
 
-  useEffect(() => {
+    useEffect(() => {
     function start() {
       gapi.client.init({
         clientId: clientId,
@@ -21,16 +23,17 @@ function App() {
   });
 
 
-  // var accessToken = gapi.auth.getToken().accessToken; ### Para ter o acces token para a api
-
-
-
   return (
-    <div className="App">
+    <div className='App'>
+      <Navbar />
       <LoginButton />
-      <LogoutButton />
+      <LogoutButton />      
     </div>
   );
 }
+
+  // var accessToken = gapi.auth.getToken().accessToken; ### Para ter o acces token para a api
+
+
 
 export default App;
