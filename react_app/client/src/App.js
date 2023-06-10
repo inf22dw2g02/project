@@ -1,6 +1,4 @@
 import './App.css';
-import LoginButton from "./components/login";
-import LogoutButton from "./components/logout";
 import { useEffect, useState } from 'react';
 import { gapi } from 'gapi-script';
 import React from 'react';
@@ -11,6 +9,7 @@ const clientId = '89846874244-4rl59hshpt44k64ontkslptsit9jmilq.apps.googleuserco
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userName, setUserName] = useState('');
 
   useEffect(() => {
     function start() {
@@ -23,20 +22,20 @@ const App = () => {
     gapi.load('client:auth2', start);
   });
 
-  const handleLogin = () => {
+  const handleLogin = (name) => {
     setIsAuthenticated(true);
+    setUserName(name);
   };
 
   const handleLogout = () => {
     setIsAuthenticated(false);
+    setUserName('');
   };
 
   return (
     <div className='App'>
-      <Navbar />
+      <Navbar isAuthenticated={isAuthenticated} onLogin={handleLogin} onLogout={handleLogout} userName={userName} />
       {isAuthenticated ? <HomePage /> : null}
-      {!isAuthenticated && <LoginButton onSuccess={handleLogin} />}
-      {isAuthenticated && <LogoutButton onLogoutSuccess={handleLogout} />}
     </div>
   );
 }
