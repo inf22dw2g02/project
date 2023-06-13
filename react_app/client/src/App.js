@@ -6,7 +6,7 @@ import Navbar from './components/Navbar';
 import HomePage from './components/HomePage';
 import SignIn from './components/SignIn';
 import Book from './components/Book';
-import { AutoresPage, AutorPageId } from './components/autoresPage';
+import { AutoresPage } from './components/autoresPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // import PrivateRoute from './routes/PrivateRoute';
 
@@ -47,7 +47,7 @@ const App = () => {
           <Route path="/home" element={isAuthenticated ? <HomePage /> : null} />
           <Route path="/book" element={isAuthenticated ? <Book /> : null} />
           <Route path="/autores" element={isAuthenticated ? <AutoresPage /> : null} />
-          <Route path="/autores/:id" element={isAuthenticated ? <AutorPageId /> : null} />
+          
         </Routes>
       </div>
     </Router>

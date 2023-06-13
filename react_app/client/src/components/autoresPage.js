@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import './autores.css';
+
 
 const AutoresPage = () => {
   const [autorData, setAutorData] = useState([]);
 
-  useEffect(() => {
-    async function fetchAutores() {
-      const response = await fetch("http://localhost:8080/autor");
-      const data = await response.json();
-      return data;
-    }
+  async function fetchAutores() {
+    const response = await fetch(`http://localhost:8080/autor`);
+    const data = await response.json();
+    return data;
+  }
 
+  useEffect(() => {
     fetchAutores().then(data => {
       setAutorData(data);
       console.log(data);
@@ -24,36 +26,44 @@ const AutoresPage = () => {
           <p>Carregando os dados...</p>
         </div>
       ) : (
-        <div>
-          Os dados foram carregados com sucesso!
-          {autorData.map(autor => (
-            <div key={autor.id}>
-              <p>Nome: {autor.nome}</p>
-              <p>Sobrenome: {autor.sobrenome}</p>
-              <p>Nacionalidade: {autor.nacionalidade}</p>
-            </div>
-          ))}
+      <div className="table-container">
+          <h3>Os dados foram carregados com sucesso!</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>Nacionalidade</th>
+              </tr>
+            </thead>
+            <tbody>
+              {autorData.map(autor => (
+                <tr key={autor.id}>
+                  <td>{autor.nome}</td>
+                  <td>{autor.sobrenome}</td>
+                  <td>{autor.nacionalidade}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </div>
   );
-};
-export { AutoresPage };
+}
 
 const AutorPageId = ({ id }) => {
   const [autorData, setAutorData] = useState([]);
 
   useEffect(() => {
-    async function fetchAutor() {
+    const fetchAutor = async () => {
       const response = await fetch(`http://localhost:8080/autor/${id}`);
       const data = await response.json();
-      return data;
-    }
-
-    fetchAutor().then(data => {
       setAutorData(data);
       console.log(data);
-    });
+    };
+
+    fetchAutor();
   }, [id]);
 
   return (
@@ -65,12 +75,12 @@ const AutorPageId = ({ id }) => {
       ) : (
         <div>
           <div key={autorData.id}>
-            <p>{autorData.nome} {autorData.sobrenome}</p>
+          <p>{autorData.nome} {autorData.sobrenome}</p>
           </div>
         </div>
       )}
     </div>
   );
-};
+}
 
-export {AutorPageId };
+export { AutoresPage, AutorPageId };
