@@ -31,6 +31,7 @@ const AutoresPage = () => {
           <table>
             <thead>
               <tr>
+                <th>Id</th>
                 <th>Nome</th>
                 <th>Sobrenome</th>
                 <th>Nacionalidade</th>
@@ -39,6 +40,7 @@ const AutoresPage = () => {
             <tbody>
               {autorData.map(autor => (
                 <tr key={autor.id}>
+                  <td>{autor.id}</td>
                   <td>{autor.nome}</td>
                   <td>{autor.sobrenome}</td>
                   <td>{autor.nacionalidade}</td>

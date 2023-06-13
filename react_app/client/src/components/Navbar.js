@@ -3,7 +3,12 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import LoginButton from "./login";
 import LogoutButton from "./logout";
-import UserButton from "./user"
+import { Link } from 'react-router-dom';
+
+
+
+
+
 
 const NavBar = ({ isAuthenticated, onLogin, onLogout, userName }) => {
   return (
@@ -13,7 +18,9 @@ const NavBar = ({ isAuthenticated, onLogin, onLogout, userName }) => {
           <div style={{ flexGrow: 1 }}></div> {/* Espaço em branco flexível */}
           {isAuthenticated ? (
             <>
-              <UserButton userName={userName} />
+              <Link to="/home" className="button">Home</Link>
+              <Link to="/autores" className="button">Autores</Link>
+              <Link to="/book" className="button">Books</Link>
               <LogoutButton onLogoutSuccess={onLogout} />
             </>
           ) : (
