@@ -6,8 +6,8 @@ import Navbar from './components/Navbar';
 import HomePage from './components/HomePage';
 import SignIn from './components/SignIn';
 import Book from './components/Book';
-import {AutoresPage} from './components/autoresPage';
-import LivroPage from './components/livrosPage';
+import { AutoresPage } from './components/autoresPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const clientId = '89846874244-4rl59hshpt44k64ontkslptsit9jmilq.apps.googleusercontent.com';
 
@@ -19,7 +19,7 @@ const App = () => {
     function start() {
       gapi.client.init({
         clientId: clientId,
-        scope: ""
+        scope: ''
       });
     }
 
@@ -37,15 +37,18 @@ const App = () => {
   };
 
   return (
-    <div className='App'>
-      <Navbar isAuthenticated={isAuthenticated} onLogin={handleLogin} onLogout={handleLogout} userName={userName} />
-      {isAuthenticated ? <HomePage /> : null}
-
-      {isAuthenticated ? <Book /> : null} 
-      <AutoresPage />
-      <LivroPage />
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar isAuthenticated={isAuthenticated} onLogin={handleLogin} onLogout={handleLogout} userName={userName} />
+        <Routes>
+          <Route path="/" element={<SignIn />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/book" element={<Book />} />
+          <Route path="/autores" element={<AutoresPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;

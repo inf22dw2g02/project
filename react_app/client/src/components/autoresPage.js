@@ -3,13 +3,13 @@ import React, { useEffect, useState } from 'react';
 const AutoresPage = () => {
   const [autorData, setAutorData] = useState([]);
 
-  async function fetchAutores() {
-    const response = await fetch("http://localhost:8080/autor");
-    const data = await response.json();
-    return data;
-  }
-
   useEffect(() => {
+    async function fetchAutores() {
+      const response = await fetch("http://localhost:8080/autor");
+      const data = await response.json();
+      return data;
+    }
+
     fetchAutores().then(data => {
       setAutorData(data);
       console.log(data);
@@ -37,18 +37,18 @@ const AutoresPage = () => {
       )}
     </div>
   );
-}
+};
 
 const AutorPageId = ({ id }) => {
   const [autorData, setAutorData] = useState([]);
 
-  async function fetchAutor() {
-    const response = await fetch(`http://localhost:8080/autor/${id}`);
-    const data = await response.json();
-    return data;
-  }
-
   useEffect(() => {
+    async function fetchAutor() {
+      const response = await fetch(`http://localhost:8080/autor/${id}`);
+      const data = await response.json();
+      return data;
+    }
+
     fetchAutor().then(data => {
       setAutorData(data);
       console.log(data);
@@ -64,12 +64,12 @@ const AutorPageId = ({ id }) => {
       ) : (
         <div>
           <div key={autorData.id}>
-          <p>{autorData.nome} {autorData.sobrenome}</p>
+            <p>{autorData.nome} {autorData.sobrenome}</p>
           </div>
         </div>
       )}
     </div>
   );
-}
+};
 
 export { AutoresPage, AutorPageId };
