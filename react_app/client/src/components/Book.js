@@ -12,6 +12,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useEffect, useState } from 'react';
+import { AutorPageId } from './autoresPage';
 
 function Copyright() {
   return (
@@ -25,6 +27,27 @@ function Copyright() {
     </Typography>
   );
 }
+
+
+const LivroPage = () => {
+  const [livroData, setLivroData] = useState([]);
+
+  async function fetchLivro() {
+    const response = await fetch("http://localhost:8080/livro");
+    const data = await response.json();
+    return data;
+  }
+
+  useEffect(() => {
+    fetchLivro().then(data => {
+      setLivroData(data);
+    });
+  }, []);
+
+  return ( livroData
+  )
+}
+
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -74,8 +97,8 @@ export default function Book() {
         <Container sx={{ py: 8 }} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+            {LivroPage().map((livro) => (
+              <Grid item key={livro.id} xs={12} sm={6} md={4}>
                 <Card
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 >
@@ -89,11 +112,10 @@ export default function Book() {
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                      {livro.titulo}
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe the
-                      content.
+                      <p>Autor: <AutorPageId id={livro.autorId} /> </p>
                     </Typography>
                   </CardContent>
                   <CardActions>
