@@ -13,6 +13,9 @@ import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import { AutorPageId } from './autoresPage';
+import './book.css';
+
+
 
 function Copyright() {
   return (
@@ -86,18 +89,13 @@ export default function Book() {
           <Grid container spacing={4}>
             {LivroPage().map((livro) => (
               <Grid item key={livro.id} xs={12} sm={6} md={4}>
-                <Card
-                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                >
+                <Card className='book-card'>
                   <CardMedia
                     component="div"
-                    sx={{
-                      // 16:9
-                      pt: '56.25%',
-                    }}
+                    className="book-media"
                     image={`https://covers.openlibrary.org/b/id/${livro.id}-L.jpg`}
                   />
-                  <CardContent sx={{ flexGrow: 1 }}>
+                  <CardContent className="book-content">
                     <Typography gutterBottom variant="h5" component="h2">
                       {livro.titulo}
                     </Typography>
@@ -105,9 +103,8 @@ export default function Book() {
                       <p>Autor: <AutorPageId id={livro.autorId} /> </p>
                     </Typography>
                   </CardContent>
-                  <CardActions>
+                  <CardActions className="book-actions">
                     <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
                   </CardActions>
                 </Card>
               </Grid>
