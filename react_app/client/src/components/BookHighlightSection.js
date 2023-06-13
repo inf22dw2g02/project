@@ -7,25 +7,25 @@ const BookHighlightSection = () => {
       title: 'Livro 1',
       author: 'Jhon Doe',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      imageUrl: 'https://covers.openlibrary.org/b/id/12673121-L.jpg',
+      imageUrl: 'https://covers.openlibrary.org/b/id/1-L.jpg',
     },
     {
       title: 'Livro 2',
       author: 'Gaspar Teixeira',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      imageUrl: 'https://th.bing.com/th/id/OIP.IZubo-N23GvPpS6jWn6EsgHaLG?pid=ImgDet&w=151&h=226&c=7',
+      imageUrl: 'https://covers.openlibrary.org/b/id/2-L.jpg',
     },
     {
       title: 'Livro 10',
       author: 'Rosalia Melo',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      imageUrl: 'https://th.bing.com/th/id/OIP.warIdXRaSdW5aKWqo_XeUAHaLH?pid=ImgDet&w=204&h=306&c=7',
+      imageUrl: 'https://covers.openlibrary.org/b/id/10-L.jpg',
     },
     {
       title: 'Livro 14',
       author: 'Rosalia Melo',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      imageUrl: 'https://th.bing.com/th/id/OIP.mQUvN_ubUmkJRYQBppcqIwAAAA?pid=ImgDet&w=204&h=230&c=7',
+      imageUrl: 'https://covers.openlibrary.org/b/id/14-L.jpg',
     },
     // Add more books as needed
   ];

@@ -14,6 +14,8 @@ const HomePage = () => {
       <BookHighlightSection />
       <h2>Clica no botao abaixo para para aceder a Livros </h2>
       <Link to="/book" className="button">Livros</Link>
+      <h2>Aqui voce pode registar o seu proprio Livro</h2>
+      {/* Adicionar butao para criar livro aqui */}
     </div>
   );
 };
