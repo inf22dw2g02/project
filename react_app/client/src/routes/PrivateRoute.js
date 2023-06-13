@@ -1,14 +1,16 @@
-import { Route, Navigate } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
+// import { Route } from 'react-router-dom';
+// import useAuth from '../hooks/useAuth';
+// import SignIn from '../components/SignIn';
 
-const PrivateRoute = ({ element: Element }) => {
-  const { isAuthenticated } = useAuth();
+// const PrivateRoute = ({ element: Element, ...rest }) => {
+//   const { isAuthenticated } = useAuth();
 
-  if (isAuthenticated) {
-    return <Element />;
-  } else {
-    return <Navigate to="/signin" replace />;
-  }
-};
+//   return (
+//     <Route
+//       {...rest}
+//       element={!isAuthenticated ? <SignIn /> : <Element />}
+//     />
+//   );
+// };
 
-export default PrivateRoute;
+// export default PrivateRoute;

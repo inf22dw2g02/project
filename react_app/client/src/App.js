@@ -6,8 +6,10 @@ import Navbar from './components/Navbar';
 import HomePage from './components/HomePage';
 import SignIn from './components/SignIn';
 import Book from './components/Book';
-import { AutoresPage } from './components/autoresPage';
+import { AutoresPage, AutorPageId } from './components/autoresPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import PrivateRoute from './routes/PrivateRoute';
+
 
 const clientId = '89846874244-4rl59hshpt44k64ontkslptsit9jmilq.apps.googleusercontent.com';
 
@@ -41,10 +43,11 @@ const App = () => {
       <div className="App">
         <Navbar isAuthenticated={isAuthenticated} onLogin={handleLogin} onLogout={handleLogout} userName={userName} />
         <Routes>
-          <Route path="/" element={<SignIn />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/book" element={<Book />} />
-          <Route path="/autores" element={<AutoresPage />} />
+          <Route path="/" element={!isAuthenticated ? <SignIn /> : null} />
+          <Route path="/home" element={isAuthenticated ? <HomePage /> : null} />
+          <Route path="/book" element={isAuthenticated ? <Book /> : null} />
+          <Route path="/autores" element={isAuthenticated ? <AutoresPage /> : null} />
+          <Route path="/autores/:id" element={isAuthenticated ? <AutorPageId /> : null} />
         </Routes>
       </div>
     </Router>

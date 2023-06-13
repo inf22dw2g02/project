@@ -38,6 +38,7 @@ const AutoresPage = () => {
     </div>
   );
 };
+export { AutoresPage };
 
 const AutorPageId = ({ id }) => {
   const [autorData, setAutorData] = useState([]);
@@ -72,4 +73,4 @@ const AutorPageId = ({ id }) => {
   );
 };
 
-export { AutoresPage, AutorPageId };
+export {AutorPageId };
