@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 const NavBar = ({ isAuthenticated, onLogin, onLogout, userName }) => {
   return (
     <div>
-      <AppBar position="static">
+      <AppBar position="realative">
         <Toolbar>
           <div style={{ flexGrow: 1 }}></div> {/* Espaço em branco flexível */}
           {isAuthenticated ? (
